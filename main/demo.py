@@ -47,7 +47,7 @@ def resize_image(img):
     new_h = new_h if new_h // 16 == 0 else (new_h // 16 + 1) * 16
     new_w = new_w if new_w // 16 == 0 else (new_w // 16 + 1) * 16
 
-    re_im = cv2.resize(img, None, interpolation=cv2.INTER_LINEAR)
+    re_im = cv2.resize(img, img_size, interpolation=cv2.INTER_LINEAR)
     return re_im, (new_h / img_size[0], new_w / img_size[1])
 
 
