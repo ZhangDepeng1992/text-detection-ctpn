@@ -47,7 +47,7 @@ def resize_image(img):
     new_h = new_h if new_h // 16 == 0 else (new_h // 16 + 1) * 16
     new_w = new_w if new_w // 16 == 0 else (new_w // 16 + 1) * 16
 
-    re_im = cv2.resize(img, (new_w, new_h), interpolation=cv2.INTER_LINEAR)
+    re_im = cv2.resize(img, None, interpolation=cv2.INTER_LINEAR)
     return re_im, (new_h / img_size[0], new_w / img_size[1])
 
 
@@ -85,8 +85,8 @@ def main(argv=None):
                     print("Error reading image {}!".format(im_fn))
                     continue
 
-                # img, (rh, rw) = resize_image(im)
-                img = im
+                img, (rh, rw) = resize_image(im)
+                # img = im
                 h, w, c = img.shape
                 im_info = np.array([h, w, c]).reshape([1, 3])
                 bbox_pred_val, cls_prob_val = sess.run([bbox_pred, cls_prob],
